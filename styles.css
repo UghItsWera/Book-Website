@@ -1,81 +1,173 @@
-/* Global styles */
 body {
     margin: 0;
     font-family: 'Merriweather', serif;
-    background-color: #121212;
-    color: #e0e0e0;
-    line-height: 1.6;
-    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+    background-color: #0d0d0d;
+    color: #f0e6f6;
+    background-image: url('dark_texture.jpg'); /* Optional texture */
+    background-size: cover;
+    background-attachment: fixed;
   }
   
-  /* Headings */
-  h1, h2, h3 {
-    font-family: 'Cinzel Decorative', serif;
-    color: #cccccc;
-    text-shadow: 1px 1px 3px #000;
-  }
-  
-  /* Navigation */
   nav {
     background-color: #1a1a1a;
-    padding: 1em;
+    padding: 15px;
     text-align: center;
-    box-shadow: 0 2px 5px #000;
+    border-bottom: 2px solid #520202;
   }
   
   nav a {
-    color: #b30000;
+    color: #e6c9ff;
     text-decoration: none;
-    margin: 0 1em;
-    font-weight: bold;
+    margin: 0 15px;
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.2em;
     transition: color 0.3s ease;
   }
   
   nav a:hover {
-    color: #ff4444;
+    color: #ff4d4d;
+    text-shadow: 0 0 5px red;
   }
   
-  /* Main container */
   .container {
+    padding: 40px;
     max-width: 800px;
-    margin: 2em auto;
-    padding: 1em;
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid #333;
-    border-radius: 8px;
+    margin: auto;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-radius: 10px;
+    box-shadow: 0 0 15px #660000;
   }
   
-  /* Buttons */
-  button, .btn {
-    background-color: #4b0082;
-    color: white;
-    border: none;
-    padding: 0.6em 1.2em;
-    border-radius: 4px;
-    font-family: 'Cinzel Decorative', serif;
-    cursor: pointer;
-    transition: background-color 0.3s;
+  h1, h2 {
+    font-family: 'Cinzel Decorative', cursive;
+    color: #ffccd5;
   }
   
-  button:hover, .btn:hover {
-    background-color: #6a0dad;
+  ul, .chapter-list {
+    list-style-type: none;
+    padding: 0;
   }
   
-  /* Links */
-  a {
-    color: #b30000;
+  .chapter-list li {
+    background-color: #1a1a2e;
+    margin: 10px 0;
+    padding: 15px;
+    border-left: 4px solid #9e1b1b;
   }
   
-  a:hover {
+  .chapter-list a {
+    color: #c1a1ff;
+    text-decoration: none;
+  }
+  
+  .chapter-list a:hover {
+    color: #ff6666;
     text-decoration: underline;
-    color: #ff4444;
   }
   
-  /* Footer */
-  footer {
+  .empty-box {
+    border: 2px dashed #888;
+    padding: 40px;
     text-align: center;
-    padding: 1em;
-    margin-top: 2em;
-    color: #777;
-    font-size: 0.9em;
-  }  
+    font-style: italic;
+    color: #bbb;
+    background-color: rgba(40, 40, 40, 0.6);
+    margin-top: 20px;
+  }
+  
+  .progress-bar {
+    background-color: #333;
+    border: 1px solid #990000;
+    border-radius: 8px;
+    margin: 15px 0;
+    width: 100%;
+    height: 30px;
+    overflow: hidden;
+  }
+  
+  .progress {
+    background-color: #aa2222;
+    height: 100%;
+    text-align: center;
+    color: white;
+    line-height: 30px;
+    font-weight: bold;
+    transition: width 1s ease;
+  }
+/* -------- Toggle Button -------- */
+#theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #e6c9ff;
+    float: right;
+    margin-right: 10px;
+  }
+  
+  #theme-toggle:hover {
+    color: #ff6666;
+    text-shadow: 0 0 5px red;
+  }
+  
+  /* -------- Light Mode Styles -------- */
+  body.light {
+    background-color: #fdf8f2;
+    color: #1a0f0f;
+    background-image: url('light_texture.jpg'); /* Optional parchment look */
+  }
+  
+  body.light nav {
+    background-color: #eae3d9;
+    border-bottom: 2px solid #d8a48f;
+  }
+  
+  body.light nav a {
+    color: #4b2c20;
+  }
+  
+  body.light nav a:hover {
+    color: #aa3a3a;
+    text-shadow: none;
+  }
+  
+  body.light .container {
+    background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 0 15px #d9bfb0;
+    color: #2c1a1a;
+  }
+  
+  body.light h1,
+  body.light h2 {
+    color: #4b2c20;
+  }
+  
+  body.light .chapter-list li {
+    background-color: #f0e6da;
+    border-left: 4px solid #b67c6b;
+  }
+  
+  body.light .chapter-list a {
+    color: #79404f;
+  }
+  
+  body.light .chapter-list a:hover {
+    color: #aa3a3a;
+  }
+  
+  body.light .empty-box {
+    border: 2px dashed #a48776;
+    background-color: rgba(255, 250, 240, 0.7);
+    color: #444;
+  }
+  
+  body.light .progress-bar {
+    background-color: #eaded2;
+    border: 1px solid #b67c6b;
+  }
+  
+  body.light .progress {
+    background-color: #c46b6b;
+    color: white;
+  }
+  
