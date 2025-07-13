@@ -1,0 +1,81 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: 'Merriweather', serif;
+    background-color: #121212;
+    color: #e0e0e0;
+    line-height: 1.6;
+    background-image: url('https://www.transparenttextures.com/patterns/black-paper.png');
+  }
+  
+  /* Headings */
+  h1, h2, h3 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #cccccc;
+    text-shadow: 1px 1px 3px #000;
+  }
+  
+  /* Navigation */
+  nav {
+    background-color: #1a1a1a;
+    padding: 1em;
+    text-align: center;
+    box-shadow: 0 2px 5px #000;
+  }
+  
+  nav a {
+    color: #b30000;
+    text-decoration: none;
+    margin: 0 1em;
+    font-weight: bold;
+    transition: color 0.3s ease;
+  }
+  
+  nav a:hover {
+    color: #ff4444;
+  }
+  
+  /* Main container */
+  .container {
+    max-width: 800px;
+    margin: 2em auto;
+    padding: 1em;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid #333;
+    border-radius: 8px;
+  }
+  
+  /* Buttons */
+  button, .btn {
+    background-color: #4b0082;
+    color: white;
+    border: none;
+    padding: 0.6em 1.2em;
+    border-radius: 4px;
+    font-family: 'Cinzel Decorative', serif;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover, .btn:hover {
+    background-color: #6a0dad;
+  }
+  
+  /* Links */
+  a {
+    color: #b30000;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    color: #ff4444;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    padding: 1em;
+    margin-top: 2em;
+    color: #777;
+    font-size: 0.9em;
+  }  
