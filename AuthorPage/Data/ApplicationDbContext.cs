@@ -20,46 +20,7 @@ public class ApplicationDbContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
 
-        // Seed initial data
-        modelBuilder.Entity<Project>().HasData(
-            new Project 
-            { 
-                Id = 1, 
-                Title = "TC", 
-                ShortCode = "TC", 
-                ProgressPercentage = 0.5m, 
-                LastUpdated = new DateTime(2025, 10, 1), 
-                DisplayOrder = 1 
-            },
-            new Project 
-            { 
-                Id = 2, 
-                Title = "TEH", 
-                ShortCode = "TEH", 
-                ProgressPercentage = 2m, 
-                LastUpdated = new DateTime(2025, 10, 1), 
-                DisplayOrder = 2 
-            },
-            new Project 
-            { 
-                Id = 3, 
-                Title = "Title Unknown Even To Me", 
-                ShortCode = "UNKNOWN", 
-                ProgressPercentage = 0m, 
-                LastUpdated = new DateTime(2025, 10, 1), 
-                DisplayOrder = 3 
-            },
-            new Project 
-            { 
-                Id = 4, 
-                Title = "YATMTM", 
-                ShortCode = "YATMTM", 
-                ProgressPercentage = 0m, 
-                LastUpdated = new DateTime(2025, 10, 1), 
-                DisplayOrder = 4 
-            }
-        );
-
+        // Seed site content only; projects will be added dynamically
         modelBuilder.Entity<SiteContent>().HasData(
             new SiteContent 
             { 
@@ -74,6 +35,13 @@ public class ApplicationDbContext : DbContext
                 Key = "AboutMe", 
                 Content = "Hi", 
                 LastModified = new DateTime(2025, 10, 1) 
+            },
+            new SiteContent 
+            { 
+                Id = 3, 
+                Key = "AdditionalContent", 
+                Content = "", 
+                LastModified = DateTime.Now 
             }
         );
     }
