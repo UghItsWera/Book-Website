@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\weron\\OneDrive\\Desktop\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj": {}
+    "C:\\Users\\weron\\OneDrive\\Documents\\Personal Projects\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj": {}
   },
   "projects": {
-    "C:\\Users\\weron\\OneDrive\\Desktop\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj": {
+    "C:\\Users\\weron\\OneDrive\\Documents\\Personal Projects\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\weron\\OneDrive\\Desktop\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj",
+        "projectUniqueName": "C:\\Users\\weron\\OneDrive\\Documents\\Personal Projects\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj",
         "projectName": "AuthorPage",
-        "projectPath": "C:\\Users\\weron\\OneDrive\\Desktop\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj",
+        "projectPath": "C:\\Users\\weron\\OneDrive\\Documents\\Personal Projects\\MyAuthorPage\\Book-Website\\AuthorPage\\AuthorPage.csproj",
         "packagesPath": "C:\\Users\\weron\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\weron\\OneDrive\\Desktop\\MyAuthorPage\\Book-Website\\AuthorPage\\obj\\",
+        "outputPath": "C:\\Users\\weron\\OneDrive\\Documents\\Personal Projects\\MyAuthorPage\\Book-Website\\AuthorPage\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\weron\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -44,7 +44,15 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.9, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[9.0.9, )"
             },

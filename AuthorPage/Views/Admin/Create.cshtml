@@ -1,0 +1,57 @@
+@model AuthorPage.Models.Project
+@{
+    ViewData["Title"] = Model?.Id > 0 ? "Edit Project" : "Create Project";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var isEdit = Model?.Id > 0;
+    var actionName = isEdit ? "EditProject" : "CreateProject";
+}
+
+<div class="admin-section">
+    <div class="section-header">
+        <h1>@ViewData["Title"]</h1>
+        <a asp-action="Projects" class="btn-secondary">← Back to Projects</a>
+    </div>
+
+    <form method="post" asp-action="@actionName" class="admin-form">
+        @if (isEdit)
+        {
+            <input type="hidden" asp-for="Id" />
+        }
+
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="Title">Project Title *</label>
+                <input asp-for="Title" class="form-control" required />
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ShortCode">Short Code *</label>
+                <input asp-for="ShortCode" class="form-control" required />
+                <small>e.g., TC, TEH, YATMTM</small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Description">Description</label>
+            <textarea asp-for="Description" class="form-control" rows="5"></textarea>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group">
+                <label asp-for="ProgressPercentage">Progress Percentage *</label>
+                <input asp-for="ProgressPercentage" class="form-control" type="number" step="0.1" min="0" max="100" required />
+                <small>Enter a number between 0 and 100</small>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="DisplayOrder">Display Order</label>
+                <input asp-for="DisplayOrder" class="form-control" type="number" value="0" />
+            </div>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-primary">@(isEdit ? "Update Project" : "Create Project")</button>
+            <a asp-action="Projects" class="btn-secondary">Cancel</a>
+        </div>
+    </form>
+</div>

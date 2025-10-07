@@ -9,6 +9,14 @@
 }
 
 /* Base styles */
+body, input, textarea, select, button {
+  font-family: 'Merriweather', 'Georgia', serif;
+}
+
+h1, h2, h3 {
+  font-family: 'Cinzel Decorative', cursive;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -267,4 +275,104 @@ body.light .progress-fill, body.light .progress {
 @keyframes typeIn {
   from { width: 0; }
   to { width: 100%; }
+}
+/* Container for forms and content */
+.container {
+  padding: 30px;
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: rgba(30, 0, 50, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 0 20px #ff6a00, 0 0 30px #7f5af0;
+  color: #fff;
+}
+
+/* Input fields */
+input[type="text"], input[type="number"], textarea {
+  width: 100%;
+  padding: 12px 15px;
+  margin: 10px 0 20px 0;
+  border-radius: 10px;
+  border: 2px solid #7f5af0;
+  background-color: #1a1a2e;
+  color: #fff;
+  font-size: 1em;
+  transition: all 0.3s;
+}
+
+input[type="text"]:focus, textarea:focus {
+  border-color: #ff6a00;
+  box-shadow: 0 0 10px #ff6a00, 0 0 15px #7f5af0;
+  outline: none;
+}
+
+/* Textarea specifically */
+textarea {
+  resize: vertical;
+}
+
+/* Lists */
+ul {
+  padding-left: 0;
+}
+
+li {
+  background-color: #1a1a2e;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  border-left: 4px solid #ff6a00;
+}
+
+/* Light mode override */
+body.light .container {
+  background-color: rgba(255, 245, 240, 0.9);
+  color: #2c1a1a;
+}
+
+body.light input, body.light textarea {
+  background-color: #fdf8f2;
+  color: #2c1a1a;
+  border-color: #5c2d91;
+}
+
+body.light li {
+  background-color: #fef5f0;
+  border-left-color: #5c2d91;
+}
+button {
+  background: linear-gradient(45deg, #7f5af0, #ff6a00);
+  color: #fff;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1em;
+  transition: all 0.3s;
+  box-shadow: 0 0 8px #7f5af0, 0 0 15px #ff6a00;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px #ff6a00, 0 0 25px #7f5af0;
+}
+
+button:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 5px #ff6a00, 0 0 10px #7f5af0;
+}
+.summary-box {
+  background: linear-gradient(135deg, #7f5af0, #ff6a00);
+  color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  flex: 1 1 200px;
+  box-shadow: 0 0 15px #ff6a00, 0 0 25px #7f5af0;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.summary-box:hover {
+  transform: scale(1.05);
 }

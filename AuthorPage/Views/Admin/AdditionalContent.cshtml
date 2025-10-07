@@ -1,0 +1,31 @@
+@model IEnumerable<AuthorPage.Models.AdditionalContent>
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Manage Additional Content";
+}
+
+<h2>🪶 Additional Content</h2>
+
+<form asp-action="AddContent" method="post" class="section-card">
+    <h3>Add New Content</h3>
+    <input type="text" name="Title" placeholder="Content Title" required />
+    <textarea name="Content" placeholder="Write your content here..." rows="5" required></textarea>
+    <button type="submit">Add Content</button>
+</form>
+
+<hr />
+
+<h3>Existing Entries</h3>
+<ul>
+@foreach (var item in Model)
+{
+    <li class="chapter-card">
+        <strong>@item.Title</strong><br />
+        <p>@item.Content</p>
+        <form asp-action="DeleteContent" method="post" style="display:inline;">
+            <input type="hidden" name="id" value="@item.Id" />
+            <button type="submit" onclick="return confirm('Delete this entry?')">Delete</button>
+        </form>
+    </li>
+}
+</ul>

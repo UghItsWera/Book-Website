@@ -1,0 +1,196 @@
+@model List<AuthorPage.Models.Chapter>
+@{
+    ViewData["Title"] = "Manage Chapters";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="admin-section container section visible">
+    <div class="section-header">
+        <h1>📖 Manage Additional Content & Chapters</h1>
+        <a asp-action="CreateChapter" class="btn-primary">+ Add New Chapter</a>
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="empty-box">
+            <p>No chapters yet. Create your first bonus chapter!</p>
+        </div>
+    }
+    else
+    {
+        <div class="chapters-list">
+            @foreach (var chapter in Model)
+            {
+                <div class="chapter-card">
+                    <div class="chapter-header">
+                        <div class="chapter-info">
+                            <h3>@chapter.Title</h3>
+                            <span class="chapter-category">@chapter.Category</span>
+                            <span class="chapter-status @(chapter.IsPublished ? "published" : "draft")">
+                                @(chapter.IsPublished ? "Published" : "Draft")
+                            </span>
+                        </div>
+                        <div class="chapter-actions">
+                            <a asp-action="EditChapter" asp-route-id="@chapter.Id" class="btn-edit">✏️ Edit</a>
+                            <form method="post" asp-action="DeleteChapter" asp-route-id="@chapter.Id" style="display:inline;">
+                                <button type="submit" class="btn-delete" onclick="return confirm('Delete this chapter?')">🗑️ Delete</button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <div class="chapter-meta">
+                        <span>Slug: <code>@chapter.Slug</code></span>
+                        <span>Created: @chapter.CreatedDate.ToString("MMM dd, yyyy")</span>
+                        <span>Modified: @chapter.LastModified.ToString("MMM dd, yyyy")</span>
+                    </div>
+
+                    @if (!string.IsNullOrEmpty(chapter.Content))
+                    {
+                        <div class="chapter-preview">
+                            @Html.Raw(chapter.Content.Length > 200 ? chapter.Content.Substring(0, 200) + "..." : chapter.Content)
+                        </div>
+                    }
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<style>
+/* Reuses your existing theme colors while improving layout & button design */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.btn-primary, .btn-edit, .btn-delete {
+    font-family: 'Cinzel Decorative', cursive;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(to right, #7f5af0, #ff6a00);
+    color: white;
+    box-shadow: 0 0 10px rgba(255,106,0,0.5);
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255,106,0,0.8);
+}
+
+.btn-edit {
+    background: #5c2d91;
+    color: white;
+}
+
+.btn-edit:hover {
+    background: #7f5af0;
+    transform: scale(1.05);
+}
+
+.btn-delete {
+    background: #990000;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #ff3b3b;
+    transform: scale(1.05);
+}
+
+.chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.chapter-card {
+    background: rgba(20, 20, 20, 0.8);
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(127,90,240,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 15px rgba(255,106,0,0.5);
+}
+
+.chapter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.chapter-info h3 {
+    margin: 0;
+    color: #ffccd5;
+}
+
+.chapter-category {
+    background: var(--accent-dark);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.chapter-status {
+    padding: 0.25rem 0.75rem;
+    border-radius: 5px;
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.chapter-status.published {
+    background: #3b8f40;
+    color: white;
+}
+
+.chapter-status.draft {
+    background: #b68a00;
+    color: white;
+}
+
+.chapter-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+    color: #bbb;
+    flex-wrap: wrap;
+}
+
+.chapter-preview {
+    padding: 1rem;
+    background: #1a1a2e;
+    border-left: 4px solid #7f5af0;
+    border-radius: 8px;
+    color: #ddd;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+body.light .chapter-card {
+    background: #fdf8f2;
+    color: var(--text-light);
+    box-shadow: 0 0 10px #d9bfb0;
+}
+
+body.light .chapter-preview {
+    background: #f0e6da;
+    border-left-color: #b67c6b;
+}
+</style>
