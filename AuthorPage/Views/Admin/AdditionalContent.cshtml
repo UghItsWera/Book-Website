@@ -1,46 +1,99 @@
-@model AuthorPage.Models.SiteContent
 @{
     ViewData["Title"] = "Additional Content";
-    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    var groupedChapters = ViewBag.GroupedChapters as Dictionary<string, List<AuthorPage.Models.Chapter>> 
+                          ?? new Dictionary<string, List<AuthorPage.Models.Chapter>>();
+    var additionalContent = ViewBag.AdditionalContent ?? "";
 }
 
-<div class="admin-section">
-    <div class="section-header">
-        <h1>Additional Content</h1>
-    </div>
+<div class="notion-page">
+    <h1>Additional Content</h1>
+    <p class="page-desc">@additionalContent</p>
 
-    <form method="post">
-        <textarea id="notion-editor" name="Content">@Model.Content</textarea>
-        <input type="hidden" name="Key" value="@Model.Key" />
-        <button type="submit" class="btn-primary">Save</button>
-    </form>
+    <div class="accordion">
+        @foreach (var label in groupedChapters.Keys)
+        {
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span>@label</span>
+                    <span class="arrow">▼</span>
+                </button>
+
+                <div class="accordion-content">
+                    @foreach (var chapter in groupedChapters[label])
+                    {
+                        <div class="chapter-item">
+                            <h3>@chapter.Title</h3>
+                            <p>@chapter.Content</p>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
 </div>
 
 <style>
-#notion-editor {
-    width: 100%;
-    min-height: 400px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 1rem;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 1rem;
-    line-height: 1.6;
-    resize: vertical;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+.notion-page {
+    max-width: 800px;
+    margin: 2rem auto;
+    background: var(--bg-secondary);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.btn-primary {
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    background-color: #4f46e5;
-    color: white;
+.page-desc {
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+}
+
+.accordion-item {
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.accordion-header {
+    background: none;
     border: none;
-    border-radius: 5px;
+    width: 100%;
+    text-align: left;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem;
     cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.btn-primary:hover {
-    background-color: #4338ca;
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    padding: 0 1rem;
+}
+
+.chapter-item {
+    margin: 1rem 0;
+}
+
+.arrow {
+    transition: transform 0.3s;
+}
+
+.accordion-header.active .arrow {
+    transform: rotate(180deg);
 }
 </style>
+
+<script>
+function toggleAccordion(button) {
+    button.classList.toggle('active');
+    const content = button.nextElementSibling;
+    if (button.classList.contains('active')) {
+        content.style.maxHeight = content.scrollHeight + "px";
+    } else {
+        content.style.maxHeight = null;
+    }
+}
+</script>

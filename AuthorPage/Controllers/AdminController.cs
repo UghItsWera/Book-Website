@@ -20,12 +20,11 @@ public class AdminController : Controller
         return HttpContext.Session.GetString("IsAdmin") == "true";
     }
 
-    // Login
+    // === LOGIN ===
     public IActionResult Login()
     {
         if (IsAuthenticated())
             return RedirectToAction(nameof(Index));
-        
         return View();
     }
 
@@ -33,7 +32,7 @@ public class AdminController : Controller
     public IActionResult Login(string password)
     {
         var adminPassword = _configuration["AdminPassword"] ?? "changeme123";
-        
+
         if (password == adminPassword)
         {
             HttpContext.Session.SetString("IsAdmin", "true");
@@ -50,7 +49,7 @@ public class AdminController : Controller
         return RedirectToAction(nameof(Login));
     }
 
-    // Dashboard
+    // === DASHBOARD ===
     public async Task<IActionResult> Index()
     {
         if (!IsAuthenticated())
@@ -163,6 +162,10 @@ public class AdminController : Controller
 
         if (ModelState.IsValid)
         {
+            // Automatically set DisplayOrder
+            var existingProjects = await _dataService.GetAllProjectsAsync();
+            project.DisplayOrder = existingProjects.Count + 1;
+
             await _dataService.CreateProjectAsync(project);
             return RedirectToAction(nameof(Projects));
         }

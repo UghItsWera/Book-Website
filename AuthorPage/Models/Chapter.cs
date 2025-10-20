@@ -11,4 +11,5 @@ public class Chapter
     public DateTime LastModified { get; set; }
     public bool IsPublished { get; set; }
     public int DisplayOrder { get; set; }
+    public string Label { get; set; } = string.Empty;
 }
